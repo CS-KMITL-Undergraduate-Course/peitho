@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peitho AI - The Oracle</title>
+  <!-- Import a serif font similar to the design -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f7f6f2;
+      --text-main: #1a1a1a;
+      --text-muted: #666;
+      --gold: #d49a2e;
+      --navy: #122b4e;
+      --border-color: #d1cec3;
+      --card-bg: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    /* --- LEFT PANEL --- */
+    .left-panel {
+      flex: 1;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-accent {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      text-align: center;
+      color: var(--navy);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--navy);
+      margin-bottom: 40px;
+    }
+
+    .offering-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 160px;
+      padding: 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      resize: vertical;
+      outline: none;
+      font-size: 14px;
+    }
+
+    textarea:focus { border-color: var(--gold); }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .context-select {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      background: #fdfcf9;
+      outline: none;
+    }
+
+    .btn-consult {
+      background: linear-gradient(to bottom, #e3b55b, #c98e2b);
+      color: white;
+      border: 1px solid #b07b22;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-consult:hover { opacity: 0.9; }
+    .btn-consult:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* --- RIGHT PANEL --- */
+    .right-panel {
+      flex: 1;
+      background: #fdfcf9;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .right-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 15px;
+    }
+
+    .right-header h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 22px;
+    }
+
+    .warning-pill {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .score-group { display: flex; flex-direction: column; gap: 15px; }
+
+    .score-item { display: flex; flex-direction: column; gap: 5px; }
+    .score-labels { display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; }
+
+    .progress-track {
+      height: 8px;
+      background: #e6e4df;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+      border-radius: 4px;
+      transition: width 0.5s ease-out;
+    }
+    .progress-bar.navy { background: var(--navy); }
+
+    .oracle-box {
+      background: var(--navy);
+      color: #d1d9e6;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .oracle-box h3 {
+      color: white;
+      font-size: 14px;
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .appeal-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .btn-appeal {
+      background: transparent;
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    /* Utility classes */
+    .hidden { display: none !important; }
+
+    @media (max-width: 800px) {
+      .container { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="header-accent">☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷</div>
+      <h1>PEITHO AI</h1>
+      <div class="subtitle">The Oracle of Text Safety & Multi-Dimensional Analysis</div>
+
+      <div class="offering-section">
+        <h2>The Offering</h2>
+        <textarea id="inputText" placeholder="Enter your text for the Oracle to evaluate..."></textarea>
+
+        <div class="controls">
+          <select id="contextSelect" class="context-select">
+            <option value="General/Public">General/Public</option>
+            <option value="Professional/Work">Professional/Work</option>
+            <option value="Academic">Academic</option>
+          </select>
+          <button id="btnConsult" class="btn-consult">Consult Peitho</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel" id="resultPanel" style="opacity: 0.5; pointer-events: none;">
+
+      <div class="right-header">
+        <h2>The Prophecy</h2>
+        <div class="warning-pill" id="warningLevel">AWAITING INPUT</div>
+      </div>
+
+      <div class="score-group">
+        <div class="score-item">
+          <div class="score-labels"><span>Toxicity & Profanity</span><span id="val-profanity">0%</span></div>
+          <div class="progress-track"><div class="progress-bar" id="bar-profanity"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-labels"><span>PII & Privacy Leakage</span><span id="val-privacy">0%</span></div>
+          <div class="progress-track"><div class="progress-bar navy" id="bar-privacy"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-labels"><span>Phishing & Deception</span><span id="val-phishing">0%</span></div>
+          <div class="progress-track"><div class="progress-bar navy" id="bar-phishing"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-labels"><span>Violence & Self-Harm</span><span id="val-violence">0%</span></div>
+          <div class="progress-track"><div class="progress-bar navy" id="bar-violence"></div></div>
+        </div>
+      </div>
+
+      <div class="oracle-box">
+        <h3>Oracle's Reasoning</h3>
+        <div id="reasoningText">Awaiting the Oracle's vision...</div>
+      </div>
+
+      <div class="appeal-section">
+        <span>Think the Oracle erred? A human will review your appeal.</span>
+        <button class="btn-appeal">Appeal to the Gods (Report False Positive)</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Link the separate JS file -->
+  <script src="app.js"></script>
+</body>
+</html>
