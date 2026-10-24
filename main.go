@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"embed"
+	//"embed"
 	"encoding/json"
 	"fmt"
 	"io/fs"
@@ -18,8 +18,8 @@ import (
 	"google.golang.org/genai"
 )
 
-//go:embed public/*
-var staticFiles embed.FS
+// //go:embed public/*
+// var staticFiles embed.FS
 
 type ModerateRequest struct {
 	Text    string `json:"text"`
