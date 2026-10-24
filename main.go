@@ -18,7 +18,7 @@ import (
 	"google.golang.org/genai"
 )
 
-//go:embed static/*
+//go:embed public/*
 var staticFiles embed.FS
 
 type ModerateRequest struct {
