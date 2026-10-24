@@ -34,6 +34,14 @@ Designed with a mythological "Oracle" aesthetic, it provides a beautiful, split-
    ```bash
    git clone https://github.com/yourusername/peitho.git
    cd peitho
+2. **Download dependencies:**
+   ```bash
+   go mod tidy
+   ```
+3. Run the server
+  ```bash
+  go run .
+  ```
 
 ### AI Usage
 This project is vibe code project create by deepseek.
