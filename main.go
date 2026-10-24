@@ -202,11 +202,11 @@ func main() {
 	mux.HandleFunc("/api/moderate", moderateHandler(client))
 
 	// Serve embedded static files
-	staticFS, err := fs.Sub(staticFiles, "static")
-	if err != nil {
-		log.Fatal(err)
-	}
-	mux.Handle("/", http.FileServer(http.FS(staticFS)))
+	// staticFS, err := fs.Sub(staticFiles, "static")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// mux.Handle("/", http.FileServer(http.FS(staticFS)))
 
 	port := os.Getenv("PORT")
 	if port == "" {
