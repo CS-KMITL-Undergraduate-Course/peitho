@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	//"embed"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"net/http/httptrace"
-	"time"
 	"os"
 	"regexp"
-	"crypto/tls"
+	"time"
 
 	"github.com/joho/godotenv"
 	"google.golang.org/genai"
@@ -154,7 +154,7 @@ You MUST return strictly valid JSON matching the schema.`
 
 	result, err := client.Models.GenerateContent(
 		ctx,
-		"gemini-3.8-flash",
+		"gemini-3.6-flash",
 		genai.Text(userPrompt),
 		config,
 	)
